@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+}
+
+
+.add-button {
+    position: fixed;
+    right: 30px;
+}

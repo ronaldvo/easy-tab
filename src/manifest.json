@@ -1,0 +1,12 @@
+{
+    "name": "easy tab",
+    "description": "",
+    "version": "0.2",
+    "incognito": "split",
+    "chrome_url_overrides": {
+    "newtab": "index.html"
+    },
+    "permissions": ["storage"],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "manifest_version": 2
+}
