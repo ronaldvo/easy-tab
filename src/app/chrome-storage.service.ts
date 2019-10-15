@@ -1,37 +1,57 @@
 import { Injectable } from '@angular/core';
-import { LinkCategory } from './link-categories-class';
-import { Link } from './link-interface';
+
+import { bindCallback, Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Links } from './links.model';
+import { Link } from './link.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChromeStorageService {
 
-  linksGet: LinkCategory[];
+  myLinks: Links[];
 
+  constructor() { }
 
-  constructor() {
-    this.linksGet = [];
-
+  get():Links[] {
+    this.myLinks = JSON.parse(localStorage.getItem('links'));
+    return this.myLinks
   }
 
-  get() {
-    window['chrome'].storage.sync.get('links', function(result) {
-      return this.process( result );
+  set(links: Links[]) {
+    localStorage.setItem('links', JSON.stringify(links))
+  }
+
+  addCategory(name: string) {
+    this.myLinks.push({
+      category: name,
+      links: []
     })
+
+    this.set(this.myLinks);
   }
 
-  process( result ) {
-    this.linksGet = ( result.links as LinkCategory[] );    
+  addLink(newLink: Link, idx: number) {
+    this.myLinks[idx].links.push(newLink)
+
+    this.set(this.myLinks);
+  }
+
+  /*
+  get(): Observable<any> {
+    return Observable.create(obs => {
+        let cb = (result) => { // use whatever the chrome storage callback syntax is, this is typical cb structure
+          obs.next(result.key);
+        };
+        window['chrome'].storage.sync.get('links', cb);
+    });
   }
 
   set(links: any){
     window['chrome'].storage.sync.set({'links': links}, function() {
-
     });
   }
-
-  returnCallBack(links: LinkCategory[]):LinkCategory[] {
-    return links;
-  }
+*/
 }
+

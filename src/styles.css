@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 13px; }
 .basic-container {
-    padding: 30px 150px 30px 150px;
+    padding: 80px 150px 30px 150px;
   }
 
 .bold {

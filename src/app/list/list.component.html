@@ -1,26 +1,15 @@
-<div class="row">
-  <div class="col-xs-12">
-      <button class="btn btn-primary" (click)="openDialog()">+ Add Category</button>
-      <button class="btn btn-primary" (click)="getData()">Get</button>
-  </div>
-</div>
-{{categoriesFromChrome | json}}
-<div class="row">
-  <div [margin]="['bottom',60]" class="col-lg-4 col-sm-6 col-xs-12" *ngFor="let category of categories">
-    <p style="text-align: center;" [margin]="['bottom', 20]">{{category.groupName}}</p>
-    <div class="list-group list-group-flush">
-      <div class="input-group" [margin]="['bottom', -1]">
 
-          <input type="text" class="form-control" aria-label="" aria-describedby="basic-addon1" style="border: none !important;">
-          <div class="input-group-prepend">
-              <button class="btn btn-primary" type="button">+</button>
-            </div>          
-        </div>
+<button class="btn btn-primary" (click)="openCategoryModal()" style="position: fixed; top: 20px;">Add Category</button>
+
+<div class="row">
+  <div [margin]="['bottom',60]" class="col-lg-4 col-sm-6 col-xs-12" *ngFor="let category of chrome.myLinks; let i = index">
+    <h5 [margin]="['bottom', 20]">{{category.category}}</h5>
+    <button class="btn btn-default" type="button" (click)="openLinkModal(i);">+</button>
+    <div class="list-group">
+
       <button *ngFor="let link of category.links" type="button" class="list-group-item list-group-item-action">
         <app-text-link [url]="link.url" [name]="link.name" target="_new"></app-text-link>
       </button>
     </div>
   </div>
 </div>
-
-

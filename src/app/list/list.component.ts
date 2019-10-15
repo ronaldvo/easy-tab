@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LinkCategory } from '../link-categories-class';
-import { ListManageComponent } from '../list-manage/list-manage.component';
 import { ChromeStorageService } from '../chrome-storage.service';
+import { Links } from '../links.model';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { EditCategoryComponent } from '../edit-category/edit-category.component';
+import { EditLinkComponent } from '../edit-link/edit-link.component';
+
 
 @Component({
   selector: 'app-list',
@@ -9,30 +12,29 @@ import { ChromeStorageService } from '../chrome-storage.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  categories: Array<LinkCategory>;
-  thing: any;
+  links: Links[];
+  modalRef: BsModalRef;
 
-  constructor(private chrome: ChromeStorageService) {
-    this.categories = [];
-  }
+  constructor(private chrome: ChromeStorageService, private modalService: BsModalService) {
+
+   }
 
   ngOnInit() {
-    // this.getData();
-    // console.log(this.categories)
-    window['chrome'].storage.sync.get('links', result => {
-      this.categories = result.links;
-      console.log(this.categories);
-    })
+    this.getData();
   }
 
   getData() {
-    window['chrome'].storage.sync.get('links', result => {
-      this.categories = result.links;
-      console.log(this.categories);
-    })
+    this.links = this.chrome.get() || [];
   }
 
-  openDialog(): void {
-
+  openCategoryModal() {
+    this.modalRef = this.modalService.show(EditCategoryComponent);
   }
+
+  openLinkModal(idx) {
+    const initialState = {
+      index: idx
+    }
+    this.modalRef = this.modalService.show(EditLinkComponent, {initialState});
+  }  
 }
