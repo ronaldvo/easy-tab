@@ -12,3 +12,4 @@ export class FontSizeDirective implements OnInit {
     this.renderer.setStyle(this.element.nativeElement, 'font-size', (this.size + 'px'))
   }
 }
+ 

@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}} Note</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <textarea type="text" class="form-control" [formControl]="note" placeholder="Enter a note" required></textarea>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+    <button type="button" class="btn btn-danger" (click)="delete()" [disabled]="title == 'Add'">Delete</button>
+    <button type="button" class="btn btn-primary align-self-end" (keyup.enter)="save()" (click)="save()" [disabled]="note.errors">{{title == 'Add' ? 'Add' : 'Update'}}</button>
+</div> 

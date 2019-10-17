@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ChromeStorageService } from '../chrome-storage.service';
 import { FormControl } from '@angular/forms';
 import { Link } from '../link.interface';
+import { ChromeHistoryService } from '../chrome-history.service';
 
 @Component({
   selector: 'app-edit-link',
@@ -17,21 +18,44 @@ export class EditLinkComponent implements OnInit {
 
   newLink: Link;
   index: number;
+  index2: number;
+  title: string;
+  history: [];
 
-  constructor(private chrome: ChromeStorageService, public bsModalRef: BsModalRef) { }
+  constructor(private chromeStorageService: ChromeStorageService, private chromeHistoryService: ChromeHistoryService, public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
-  }
-
-  add(){
-    this.newLink = {
-      url: this.url.value,
-      name: this.name.value,
-      icon: ''
+    // editing if there is an index passed in
+    if (this.index2 >= 0) {
+      this.name.setValue(this.chromeStorageService.links[this.index].links[this.index2].name);
+      this.url.setValue(this.chromeStorageService.links[this.index].links[this.index2].url);
     }
 
-    this.chrome.addLink(this.newLink, this.index);
+    this.getHistory();
+  }
+
+  save(){
+    if (this.index2 >= 0) {
+      this.newLink = {
+        url: this.url.value,
+        name: this.name.value
+      }
+      this.chromeStorageService.updateLink(this.newLink, this.index, this.index2);
+    } else {
+      this.newLink = {
+        url: this.url.value,
+        name: this.name.value
+      }
+      this.chromeStorageService.addLink(this.newLink, this.index);
+    }
+
     this.bsModalRef.hide();
   }
 
+  getHistory() {
+    this.chromeHistoryService.get().subscribe(data => {
+      this.history = data;
+      console.log(this.history);
+    })
+  }
 }

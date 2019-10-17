@@ -1,11 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 13px; }
+body { margin: 0; font-family: Roboto, sans-serif; font-size: 13px; }
 .basic-container {
-    padding: 80px 150px 30px 150px;
+    padding: 100px 150px 30px 150px;
   }
 
 .bold {
   font-weight: bold;
+}
+
+.list-group-flush .list-group-item {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  border: 0px;
 }

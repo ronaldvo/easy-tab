@@ -7,12 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TextLinkComponent implements OnInit {
   @Input() url: string;
-  @Input() target: string;
   @Input() name: string;
 
   constructor() { }
 
   ngOnInit(){
     this.url = (this.url.indexOf('://') === -1) ? 'http://' + this.url : this.url;
+  }
+
+  go() {
+    window.open(this.url, '_blank');
   }
 }

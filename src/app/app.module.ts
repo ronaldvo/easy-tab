@@ -5,20 +5,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-// ngx-bootstrap
+// ngx-bootstrap and font-awesome
 import { ModalModule } from 'ngx-bootstrap/modal';
-
-
 
 // my components
 import { ListComponent } from './list/list.component';
 import { TextLinkComponent } from './text-link/text-link.component';
-
-// my directives
-import { FontSizeDirective } from './font-size.directive';
-import { MarginDirective } from './margin-bottom.directive';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { EditLinkComponent } from './edit-link/edit-link.component';
+
+// my directives
+import { FontSizeDirective } from './directives/font-size.directive';
+import { MarginDirective } from './directives/margin-bottom.directive';
+import { CursorPointerDirective } from './directives/cursor-pointer.directive';
+import { ColorDirective } from './directives/color.directive';
+import { FavIconComponent } from './fav-icon/fav-icon.component';
+import { CleanUrlPipe } from './clean-url.pipe';
+import { NotesComponent } from './notes/notes.component';
+import { EditNoteComponent } from './edit-note/edit-note.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 
 
@@ -30,17 +35,25 @@ import { EditLinkComponent } from './edit-link/edit-link.component';
     TextLinkComponent,
     MarginDirective,
     EditCategoryComponent,
-    EditLinkComponent
+    EditLinkComponent,
+    CursorPointerDirective,
+    ColorDirective,
+    FavIconComponent,
+    CleanUrlPipe,
+    NotesComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   entryComponents: [
     EditCategoryComponent,
-    EditLinkComponent
+    EditLinkComponent,
+    EditNoteComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

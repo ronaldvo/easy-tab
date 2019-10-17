@@ -1,14 +1,14 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Add Link</h4>
+    <h4 class="modal-title pull-left">{{title}} Link</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <input type="text" class="form-control" [formControl]="url" placeholder="Enter url">
+    <input type="text" class="form-control" [formControl]="url" placeholder="Enter url" [typeahead]="history" typeaheadOptionField="url">
     <input type="text" class="form-control" [formControl]="name" placeholder="Enter a name">
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="add()">Add</button>
+    <button type="button" class="btn btn-primary" (keydown.enter)="save()" (click)="save()">{{title == 'Add' ? 'Add' : 'Edit'}}</button>
 </div>

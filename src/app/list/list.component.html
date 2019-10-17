@@ -1,15 +1,35 @@
 
-<button class="btn btn-primary" (click)="openCategoryModal()" style="position: fixed; top: 20px;">Add Category</button>
+<button class="btn btn-primary" (click)="openCategoryModal()" style="position: fixed; top: 40px; left: 40px;">Add Link Category</button>
 
 <div class="row">
-  <div [margin]="['bottom',60]" class="col-lg-4 col-sm-6 col-xs-12" *ngFor="let category of links; let i = index">
-    <h5 [margin]="['bottom', 20]">{{category.category}}</h5>
-    <button class="btn btn-default" type="button" (click)="openLinkModal(i);">+</button>
-    <div class="list-group">
-
-      <button *ngFor="let link of category.links" type="button" class="list-group-item list-group-item-action">
-        <app-text-link [url]="link.url" [name]="link.name" target="_new"></app-text-link>
-      </button>
-    </div>
-  </div>
+    <ul class="list-group list-group-flush col-lg-4 col-sm-6 col-xs-12" 
+        margin="bottom, 60" 
+        *ngFor="let category of links; let i = index"
+        cursorPointer>
+          <div class="d-flex justify-content-between" margin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
+            <h6 margin="left, 3" color="grey" cursorPointer (click)="openCategoryModal(i)">{{category.category}}</h6>
+            <div style="padding: 2px 3px;" cursorPointer color="grey" (click)="openLinkModal(i);">Add Link</div>
+          </div>
+      <li 
+        class="list-group-item d-flex align-items-center"
+        *ngFor="let link of category.links; let ii = index"
+        (mouseenter)="link.editingRow = true"
+        (mouseleave)="link.editingRow = false">
+          <fav-icon [url]="link.url"></fav-icon>
+          <app-text-link [url]="link.url" [name]="link.name"></app-text-link>
+          
+          <div style="position: absolute; right: 0px; z-index: 10000" *ngIf="link.editingRow">
+              <span (click)="deleteLink(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Remove</span>          
+              <span (click)="openLinkModal(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Edit</span>
+          </div>
+      </li>
+      <li 
+        (click)="openLinkModal(i)"
+        *ngIf="category.links.length === 0"
+        style="border: 0px !important;"
+        color="lightgrey"
+        class="list-group-item d-flex justify-content-between align-items-center">
+        no links in this category
+      </li>
+    </ul>
 </div>
