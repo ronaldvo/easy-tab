@@ -1,5 +1,9 @@
 import { Directive, ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 
+/*
+    <div [fontSize]="24">
+*/
+
 @Directive({
   selector: '[fontSize]'
 })

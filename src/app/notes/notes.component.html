@@ -9,10 +9,13 @@
         <li 
             class="list-group-item d-flex align-items-center"
             *ngFor="let note of notes; let i = index">
-            <div>{{note.note}}<br>
-                <small color="grey">{{note.date | date}}</small>
-                
+            <div [fontSize]="16">
+                {{note.note}}
+                <div><span [fontSize]="11" color="grey">{{note.date | date}}</span></div>
             </div>
+            
+            
+
             <div style="position: absolute; right: 0px;" >
                 <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Remove</span>          
                 <span (click)="openModal(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Edit</span>

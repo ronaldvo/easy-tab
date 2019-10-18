@@ -10,7 +10,6 @@ import { BehaviorSubject } from 'rxjs';
 export class ChromeStorageService {
 
   private linksBehaviorSubject: BehaviorSubject<Links[]> = new BehaviorSubject<Links[]>([]);
-  private linksStore: { links: Links[] } = { links: [] }
   public linksObservable = this.linksBehaviorSubject.asObservable();
 
   constructor(private ngZone: NgZone) { 
@@ -24,8 +23,7 @@ export class ChromeStorageService {
         window['chrome'].storage.sync.get(['links'], cb);
     }).subscribe(data => {
       this.ngZone.run(() => {
-        this.linksStore.links = data;
-        this.linksBehaviorSubject.next(Object.assign([], this.linksStore.links))
+        this.linksBehaviorSubject.next(data)
       })
     })
   }

@@ -20,10 +20,6 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getData();
-  }
-
-  getData() {
     this.noteDataService.get().subscribe(data => {
       this.notes = data;
     })

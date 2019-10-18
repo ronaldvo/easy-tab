@@ -18,7 +18,7 @@ export class ListComponent implements OnInit, OnDestroy {
   modalRef: BsModalRef;
   subscription: Subscription;
 
-  constructor(public chromeStorageService: ChromeStorageService, private modalService: BsModalService, private cdr: ChangeDetectorRef) { }
+  constructor(private chromeStorageService: ChromeStorageService, private modalService: BsModalService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.subscription = this.chromeStorageService.linksObservable.subscribe(data => {
