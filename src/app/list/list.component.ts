@@ -1,11 +1,10 @@
-import { Component, OnInit, OnDestroy, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { ChromeStorageService } from '../chrome-storage.service';
-import { ChromeHistoryService } from '../chrome-history.service';
 import { Links } from '../links.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EditCategoryComponent } from '../edit-category/edit-category.component';
 import { EditLinkComponent } from '../edit-link/edit-link.component';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 
 
@@ -14,31 +13,27 @@ import { Subscription } from 'rxjs';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class ListComponent implements OnInit, OnDestroy {
   links: Links[];
   modalRef: BsModalRef;
   subscription: Subscription;
 
-  constructor(private chromeStorageService: ChromeStorageService, private modalService: BsModalService) { }
+  constructor(public chromeStorageService: ChromeStorageService, private modalService: BsModalService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.getData();
+    this.subscription = this.chromeStorageService.linksObservable.subscribe(data => {
+      this.links = data;
+    });
+
+    this.chromeStorageService.get();
   }
 
   ngOnDestroy() {
-    console.log('unsubbing!')
-    //this.subscription.unsubscribe();
-  }
-
-  ngAfterViewChecked() {
-    // console.log('viewinit!')
-    // this.chRef.detectChanges();
+    this.subscription.unsubscribe();
   }
 
   getData() {
-    this.chromeStorageService.get().subscribe(data => {
-     this.links = data;
-    })
+
   }
 
   deleteLink(idx, idx2) {

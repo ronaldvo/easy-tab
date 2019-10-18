@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ChromeStorageService } from '../chrome-storage.service';
 import { FormControl } from '@angular/forms';
 import { Link } from '../link.interface';
+import { Links } from '../links.model';
 import { ChromeHistoryService } from '../chrome-history.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class EditLinkComponent implements OnInit {
   url = new FormControl('');
   name = new FormControl('');
   icon: string;
+  links: Links[];
 
   newLink: Link;
   index: number;
@@ -25,10 +27,13 @@ export class EditLinkComponent implements OnInit {
   constructor(private chromeStorageService: ChromeStorageService, private chromeHistoryService: ChromeHistoryService, public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
-    // editing if there is an index passed in
+    this.chromeStorageService.linksObservable.subscribe(data => {
+      this.links = data;
+    });
+
     if (this.index2 >= 0) {
-      this.name.setValue(this.chromeStorageService.links[this.index].links[this.index2].name);
-      this.url.setValue(this.chromeStorageService.links[this.index].links[this.index2].url);
+      this.name.setValue(this.links[this.index].links[this.index2].name);
+      this.url.setValue(this.links[this.index].links[this.index2].url);
     }
 
     this.getHistory();

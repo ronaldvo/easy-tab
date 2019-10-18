@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ChromeStorageService } from '../chrome-storage.service'; 
 import { FormControl } from '@angular/forms';
+import { Links } from '../links.model';
 
 
 @Component({
@@ -13,29 +14,27 @@ export class EditCategoryComponent implements OnInit {
   title: string;
   index: number;
   name = new FormControl('');
+  links: Links[];
 
   constructor(private chromeStorageService: ChromeStorageService, public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
     // editing if there is an index passed in, so replace value 
+    this.chromeStorageService.linksObservable.subscribe(data => {
+      this.links = data;
+    });
+
     if (this.index >= 0) {
-      this.name.setValue(this.chromeStorageService.links[this.index].category);
+      this.name.setValue(this.links[this.index].category);
     }
   }
 
   save(){
     if (this.index >= 0) {
-      this.chromeStorageService.updateCategory(this.name.value, this.index)
-      // this.chromeStorageService.links[this.index].category = this.name.value
+      this.chromeStorageService.updateCategory(this.name.value, this.index);
     } else {
-      this.chromeStorageService.addCategory(this.name.value)
-      // this.chromeStorageService.links.push({
-      //   category: this.name.value,
-      //   links: []
-      // })
+      this.chromeStorageService.addCategory(this.name.value);
     }
-    
-    //this.chromeStorageService.set(this.chromeStorageService.links).subscribe();
     this.bsModalRef.hide();
   }
 
