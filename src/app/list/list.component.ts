@@ -4,7 +4,7 @@ import { Links } from '../links.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EditCategoryComponent } from '../edit-category/edit-category.component';
 import { EditLinkComponent } from '../edit-link/edit-link.component';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 
 

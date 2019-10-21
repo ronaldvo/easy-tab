@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RedditPost } from '../reddit-post.model';
 import { RedditJsonService } from '../reddit-json.service';
-import { HttpClient } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-reddit',
@@ -11,15 +11,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RedditComponent implements OnInit {
 
+  subreddit = new FormControl('');
   redditPosts: Observable<RedditPost[]>;
 
   constructor(private redditJsonService: RedditJsonService) { }
 
   ngOnInit() {
     this.redditPosts = this.redditJsonService.redditPostObservable;
-    this.redditJsonService.getPosts();
 
-    console.log(this.redditPosts);
+    this.redditJsonService.subredditObservable.subscribe(response => {
+      this.subreddit.setValue(response || 'all');
+    })
+
+    this.redditJsonService.getSubreddit();
   }
 
+  setSubreddit() {
+    this.redditJsonService.setSubreddit(this.subreddit.value).subscribe();
+  }
 }

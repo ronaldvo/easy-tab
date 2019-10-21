@@ -23,7 +23,7 @@ export class ChromeStorageService {
         window['chrome'].storage.sync.get(['links'], cb);
     }).subscribe(data => {
       this.ngZone.run(() => {
-        this.linksBehaviorSubject.next(data)
+        this.linksBehaviorSubject.next(data || [])
       })
     })
   }
@@ -38,12 +38,13 @@ export class ChromeStorageService {
   }
 
   addCategory(name: string) {
-    let newLink: Links = {
+    let newCategory: Links = {
       category: name,
       links: []
     }
 
-    let list = [...this.linksBehaviorSubject.value, newLink]
+    let list = Object.assign([], this.linksBehaviorSubject.value)
+    list.push(newCategory);
 
     this.set(list).subscribe(() => {
       this.linksBehaviorSubject.next(list)
@@ -51,7 +52,7 @@ export class ChromeStorageService {
   }
 
   updateCategory(category: string, idx: number) {
-    let list = [...this.linksBehaviorSubject.value]
+    let list = Object.assign([], this.linksBehaviorSubject.value)
     list[idx].category = category;
 
     this.set(list).subscribe(() => {
@@ -60,7 +61,7 @@ export class ChromeStorageService {
   }
 
   deleteCategory(idx: number) {
-    let list = [...this.linksBehaviorSubject.value]
+    let list = Object.assign([], this.linksBehaviorSubject.value)
     list.splice(idx, 1)
 
     this.set(list).subscribe(() => {
@@ -69,7 +70,7 @@ export class ChromeStorageService {
   }
 
   addLink(newLink: Link, idx: number) {
-    let list = [...this.linksBehaviorSubject.value]
+    let list = Object.assign([], this.linksBehaviorSubject.value)
     list[idx].links = [...list[idx].links, newLink]
 
     this.set(list).subscribe(() => {
@@ -78,7 +79,7 @@ export class ChromeStorageService {
   }
 
   updateLink(newLink: Link, idx: number, idx2: number) {
-    let list = [...this.linksBehaviorSubject.value]
+    let list = Object.assign([], this.linksBehaviorSubject.value)
     list[idx].links[idx2] = newLink;
 
     this.set(list).subscribe(() => {
@@ -87,7 +88,7 @@ export class ChromeStorageService {
   }
 
   deleteLink(idx: number, idx2: number) {
-    let list = [...this.linksBehaviorSubject.value]
+    let list = Object.assign([], this.linksBehaviorSubject.value)
     list[idx].links.splice(idx2, 1)
 
     this.set(list).subscribe(() => {

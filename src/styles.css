@@ -3,11 +3,19 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, sans-serif; font-size: 13px; }
 .basic-container {
-    padding: 30px 150px 30px 150px;
+    margin-left: 220px;
   }
 
 .bold {
   font-weight: bold;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: 0;
 }
 
 .list-group-flush .list-group-item {

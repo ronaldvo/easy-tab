@@ -26,6 +26,7 @@ import { MarginDirective } from './directives/margin-bottom.directive';
 import { CursorPointerDirective } from './directives/cursor-pointer.directive';
 import { ColorDirective } from './directives/color.directive';
 import { CleanUrlPipe } from './clean-url.pipe';
+import { SideOptionsComponent } from './side-options/side-options.component';
 
 
 
@@ -44,7 +45,8 @@ import { CleanUrlPipe } from './clean-url.pipe';
     CleanUrlPipe,
     NotesComponent,
     EditNoteComponent,
-    RedditComponent
+    RedditComponent,
+    SideOptionsComponent
   ],
   imports: [
     BrowserModule,

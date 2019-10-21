@@ -1,33 +1,34 @@
-<div class="row">
-    <ul class="list-group list-group-flush col-sm-6" 
-        margin="bottom, 60" 
-        cursorPointer>
-        <div class="d-flex justify-content-between" margin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
-            <h6 margin="left, 3" color="grey" cursorPointer>Notes</h6>
-            <div style="padding: 2px 3px;" cursorPointer color="grey" (click)="openModal()">Add Note</div>
+<ul class="list-group list-group-flush" 
+    margin="bottom, 60" 
+    cursorPointer>
+    <div class="d-flex justify-content-between" margin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
+        <h6 margin="left, 3" color="grey" cursorPointer>Notes</h6>
+        <div style="padding: 2px 3px;" cursorPointer color="grey" (click)="openModal()">Add Note</div>
+    </div>
+    <li 
+        class="list-group-item d-flex align-items-center"
+        *ngFor="let note of notes; let i = index">
+        <div [fontSize]="13">
+            {{note.note}}
+            <div><span [fontSize]="11" color="grey">{{note.date | date}}</span></div>
         </div>
-        <li 
-            class="list-group-item d-flex align-items-center"
-            *ngFor="let note of notes; let i = index">
-            <div [fontSize]="16">
-                {{note.note}}
-                <div><span [fontSize]="11" color="grey">{{note.date | date}}</span></div>
-            </div>
-            
-            
+        
+        
 
-            <div style="position: absolute; right: 0px;" >
-                <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Remove</span>          
-                <span (click)="openModal(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Edit</span>
-            </div>
-        </li>
-        <li 
-            (click)="openModal()"
-            *ngIf="notes.length === 0"
-            style="border: 0px !important;"
-            color="lightgrey"
-            class="list-group-item d-flex justify-content-between align-items-center">
-            no notes
-        </li>
-    </ul>
-</div>
+        <div style="position: absolute; right: 0px;" >
+            <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Remove</span>          
+            <span (click)="openModal(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Edit</span>
+        </div>
+    </li>
+    <li 
+        (click)="openModal()"
+        *ngIf="notes.length === 0"
+        style="border: 0px !important;"
+        color="lightgrey"
+        class="list-group-item d-flex justify-content-between align-items-center">
+        no notes
+    </li>
+</ul>
+
+
+
