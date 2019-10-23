@@ -6,15 +6,13 @@
         <div style="padding: 2px 3px;" cursorPointer color="grey" (click)="openModal()">Add Note</div>
     </div>
     <li 
+        [@fadeInOnEnter] [@fadeOutOnLeave]
         class="list-group-item d-flex align-items-center"
         *ngFor="let note of notes; let i = index">
         <div [fontSize]="13">
             {{note.note}}
             <div><span [fontSize]="11" color="grey">{{note.date | date}}</span></div>
         </div>
-        
-        
-
         <div style="position: absolute; right: 0px;" >
             <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Remove</span>          
             <span (click)="openModal(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Edit</span>

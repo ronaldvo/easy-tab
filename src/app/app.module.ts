@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-// ngx-bootstrap and font-awesome
+// other modules / libs
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { DragulaModule } from 'ng2-dragula';
 
 // my components
-import { ListComponent } from './list/list.component';
+import { LinksComponent } from './links/links.component';
 import { FavIconComponent } from './fav-icon/fav-icon.component';
 import { TextLinkComponent } from './text-link/text-link.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
@@ -33,7 +34,7 @@ import { SideOptionsComponent } from './side-options/side-options.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent,
+    LinksComponent,
     FontSizeDirective,
     TextLinkComponent,
     MarginDirective,
@@ -54,7 +55,8 @@ import { SideOptionsComponent } from './side-options/side-options.component';
     ReactiveFormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    DragulaModule.forRoot()
   ],
   entryComponents: [
     EditCategoryComponent,

@@ -3,11 +3,16 @@ import { Observable } from 'rxjs';
 import { RedditPost } from '../reddit-post.model';
 import { RedditJsonService } from '../reddit-json.service';
 import { FormControl } from '@angular/forms';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-reddit',
   templateUrl: './reddit.component.html',
-  styleUrls: ['./reddit.component.css']
+  styleUrls: ['./reddit.component.css'],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation({ duration: 300})
+  ]
 })
 export class RedditComponent implements OnInit {
 

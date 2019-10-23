@@ -5,9 +5,9 @@
     </button>
 </div>
 <div class="modal-body">
-    <textarea type="text" class="form-control" [formControl]="note" placeholder="Enter a note" required></textarea>
+    <textarea type="text" class="form-control" [formControl]="note" (keydown.enter)="save()" placeholder="Enter a note" required></textarea>
 </div>
 <div class="modal-footer d-flex justify-content-between">
     <button type="button" class="btn btn-danger" (click)="delete()" [disabled]="title == 'Add'">Delete</button>
-    <button type="button" class="btn btn-primary align-self-end" (keyup.enter)="save()" (click)="save()" [disabled]="note.errors">{{title == 'Add' ? 'Add' : 'Update'}}</button>
+    <button type="button" class="btn btn-primary align-self-end" (click)="save()" [disabled]="note.errors">{{title == 'Add' ? 'Add' : 'Update'}}</button>
 </div> 

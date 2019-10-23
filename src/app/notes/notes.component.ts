@@ -3,11 +3,16 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NoteDataService } from '../note-data.service';
 import { Note } from '../note.model';
 import { EditNoteComponent } from '../edit-note/edit-note.component';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.css']
+  styleUrls: ['./notes.component.css'],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation({ duration: 300})
+  ]
 })
 export class NotesComponent implements OnInit {
   notes: Note[];

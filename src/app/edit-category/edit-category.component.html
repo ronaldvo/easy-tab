@@ -5,7 +5,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <input type="text" class="form-control" [formControl]="name" placeholder="Enter a category name" required>
+  <input type="text" class="form-control" [formControl]="name" placeholder="Enter a category name" (keydown.enter)="save()" required>
 </div>
 <div class="modal-footer d-flex justify-content-between">
   <button type="button" class="btn btn-danger" (click)="delete()" [disabled]="title == 'Add'">Delete</button>

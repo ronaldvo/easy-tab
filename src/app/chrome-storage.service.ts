@@ -37,6 +37,12 @@ export class ChromeStorageService {
     });
   }
 
+  update(links: Links[]) {
+    this.set(links).subscribe(() => {
+      this.linksBehaviorSubject.next(links);
+    })
+  }
+
   addCategory(name: string) {
     let newCategory: Links = {
       category: name,

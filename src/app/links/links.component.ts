@@ -5,15 +5,20 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EditCategoryComponent } from '../edit-category/edit-category.component';
 import { EditLinkComponent } from '../edit-link/edit-link.component';
 import { Subscription } from 'rxjs';
-
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation, fadeInUpOnEnterAnimation } from 'angular-animations';
 
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  selector: 'app-links',
+  templateUrl: './links.component.html',
+  styleUrls: ['./links.component.css'],
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation({ duration: 300}),
+    fadeInUpOnEnterAnimation()
+  ]
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class LinksComponent implements OnInit, OnDestroy {
   links: Links[];
   modalRef: BsModalRef;
   subscription: Subscription;
@@ -30,10 +35,6 @@ export class ListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-
-  getData() {
-
   }
 
   deleteLink(idx, idx2) {
