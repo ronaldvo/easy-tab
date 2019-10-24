@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Links } from './links.model';
 import { Link } from './link.interface'; 
 import { BehaviorSubject } from 'rxjs';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ChromeStorageService {
   private linksBehaviorSubject: BehaviorSubject<Links[]> = new BehaviorSubject<Links[]>([]);
   public linksObservable = this.linksBehaviorSubject.asObservable();
 
-  constructor(private ngZone: NgZone) { 
+  constructor(private ngZone: NgZone, private toast: ToastService) { 
   }
 
   get() {
@@ -55,6 +56,8 @@ export class ChromeStorageService {
     this.set(list).subscribe(() => {
       this.linksBehaviorSubject.next(list)
     })
+
+    this.toast.show('Link category added!');
   }
 
   updateCategory(category: string, idx: number) {
@@ -64,6 +67,7 @@ export class ChromeStorageService {
     this.set(list).subscribe(() => {
       this.linksBehaviorSubject.next(list);
     })
+    this.toast.show('Link category updated!');
   }
 
   deleteCategory(idx: number) {
@@ -73,6 +77,7 @@ export class ChromeStorageService {
     this.set(list).subscribe(() => {
       this.linksBehaviorSubject.next(list);
     })
+    this.toast.show('Link category deleted!');
   }
 
   addLink(newLink: Link, idx: number) {
@@ -82,6 +87,7 @@ export class ChromeStorageService {
     this.set(list).subscribe(() => {
       this.linksBehaviorSubject.next(list);
     })
+    this.toast.show('Link added!');
   }
 
   updateLink(newLink: Link, idx: number, idx2: number) {
@@ -91,6 +97,7 @@ export class ChromeStorageService {
     this.set(list).subscribe(() => {
       this.linksBehaviorSubject.next(list);
     })
+    this.toast.show('Link updated!');
   }
 
   deleteLink(idx: number, idx2: number) {
@@ -100,6 +107,7 @@ export class ChromeStorageService {
     this.set(list).subscribe(() => {
       this.linksBehaviorSubject.next(list);
     })
+    this.toast.show('Link deleted!');
   }
 
 }

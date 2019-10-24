@@ -8,7 +8,7 @@
           margin="bottom, 60" 
           cursorPointer>
             <div class="d-flex justify-content-between" margin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
-              <h6 margin="left, 3" color="grey" cursorPointer (click)="openCategoryModal(i)">{{category.category}}</h6>
+              <h4 margin="left, 3" cursorPointer (click)="openCategoryModal(i)">{{category.category}}</h4>
               <div style="padding: 2px 3px;" cursorPointer color="grey" (click)="openLinkModal(i);">Add Link</div>
             </div>
                 <li 
@@ -21,8 +21,8 @@
                   <app-text-link [url]="link.url" [name]="link.name"></app-text-link>
                   
                   <div style="position: absolute; right: 0px;" *ngIf="link.editingRow">
-                      <span (click)="deleteLink(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Remove</span>          
-                      <span (click)="openLinkModal(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Edit</span>
+                      <span (click)="deleteLink(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Remove</span>          
+                      <span (click)="openLinkModal(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Edit</span>
                   </div>
               </li>
               <li 

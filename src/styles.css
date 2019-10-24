@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, sans-serif; font-size: 13px; }
+body { 
+  margin: 0; 
+  font-family: Roboto, sans-serif !important; 
+  font-size: 16px; 
+}
+
 .basic-container {
     margin-left: 220px;
   }
@@ -23,6 +28,15 @@ body { margin: 0; font-family: Roboto, sans-serif; font-size: 13px; }
   border-left: 0;
   border-radius: 0;
   border: 0px;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #00000000;
+
 }
 
 .hover-shadow {
@@ -82,3 +96,5 @@ body { margin: 0; font-family: Roboto, sans-serif; font-size: 13px; }
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

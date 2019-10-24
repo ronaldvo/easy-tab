@@ -2,8 +2,8 @@
     margin="bottom, 60" 
     cursorPointer>
     <div class="d-flex justify-content-between" margin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
-        <h6 margin="left, 3" color="grey" cursorPointer>Notes</h6>
-        <div style="padding: 2px 3px;" cursorPointer color="grey" (click)="openModal()">Add Note</div>
+        <h4 margin="left, 3" cursorPointer>Notes</h4>
+        <div style="padding: 2px 3px;" cursorPointer (click)="openModal()">Add Note</div>
     </div>
     <li 
         [@fadeInOnEnter] [@fadeOutOnLeave]
@@ -14,8 +14,8 @@
             <div><span [fontSize]="11" color="grey">{{note.date | date}}</span></div>
         </div>
         <div style="position: absolute; right: 0px;" >
-            <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Remove</span>          
-            <span (click)="openModal(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer color="grey">Edit</span>
+            <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Remove</span>          
+            <span (click)="openModal(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Edit</span>
         </div>
     </li>
     <li 

@@ -7,7 +7,7 @@
 <div class="modal-body">
     <!-- <input type="text" class="form-control" [formControl]="url" placeholder="Enter url" [typeahead]="history" typeaheadOptionField="url"> -->
     <input type="text" class="form-control" [formControl]="url" placeholder="Enter url" required>
-    <input type="text" class="form-control" [formControl]="name" placeholder="Enter a name" (keydown.enter)="save()" required>
+    <input type="text" class="form-control" [formControl]="name" placeholder="Enter a name" (keydown.enter)="(url.errors || name.errors) ? '' : save()" required>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>

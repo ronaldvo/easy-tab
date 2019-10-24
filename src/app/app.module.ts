@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { DragulaModule } from 'ng2-dragula';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // my components
 import { LinksComponent } from './links/links.component';
@@ -28,6 +29,7 @@ import { CursorPointerDirective } from './directives/cursor-pointer.directive';
 import { ColorDirective } from './directives/color.directive';
 import { CleanUrlPipe } from './clean-url.pipe';
 import { SideOptionsComponent } from './side-options/side-options.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -47,13 +49,15 @@ import { SideOptionsComponent } from './side-options/side-options.component';
     NotesComponent,
     EditNoteComponent,
     RedditComponent,
-    SideOptionsComponent
+    SideOptionsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSnackBarModule,
     ModalModule.forRoot(),
     TypeaheadModule.forRoot(),
     DragulaModule.forRoot()
