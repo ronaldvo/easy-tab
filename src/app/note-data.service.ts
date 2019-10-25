@@ -11,17 +11,17 @@ export class NoteDataService {
   notes: Note[];
 
   constructor(private toast: ToastService) { }
-  
+
   get(): Observable<Note[]> {
     this.notes = JSON.parse(localStorage.getItem('notes')) || [];
 
     return Observable.create(obs => {
       obs.next(this.notes);
-    })
+    });
   }
 
   set(notes: Note[]) {
-    localStorage.setItem('notes', JSON.stringify(notes))
+    localStorage.setItem('notes', JSON.stringify(notes));
   }
 
   add(note: Note) {

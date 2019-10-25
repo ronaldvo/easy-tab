@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header" role="dialog">
     <h4 class="modal-title pull-left">{{title}} Link</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
     <!-- <input type="text" class="form-control" [formControl]="url" placeholder="Enter url" [typeahead]="history" typeaheadOptionField="url"> -->
-    <input type="text" class="form-control" [formControl]="url" placeholder="Enter url" required>
+    <input autofocus type="text" class="form-control" [formControl]="url" placeholder="Enter url" required>
     <input type="text" class="form-control" [formControl]="name" placeholder="Enter a name" (keydown.enter)="(url.errors || name.errors) ? '' : save()" required>
 </div>
 <div class="modal-footer">

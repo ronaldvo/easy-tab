@@ -28,6 +28,7 @@ export class EditNoteComponent implements OnInit {
   save(){
     let newNote: Note = {
       note: this.note.value,
+      checked: false,
       date: new Date()
     }
 

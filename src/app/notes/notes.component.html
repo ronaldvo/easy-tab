@@ -2,20 +2,31 @@
     margin="bottom, 60" 
     cursorPointer>
     <div class="d-flex justify-content-between" margin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
-        <h4 margin="left, 3" cursorPointer>Notes</h4>
+        <h4 margin="left, 3" cursorPointer>to do</h4>
         <div style="padding: 2px 3px;" cursorPointer (click)="openModal()">Add Note</div>
     </div>
     <li 
         [@fadeInOnEnter] [@fadeOutOnLeave]
         class="list-group-item d-flex align-items-center"
-        *ngFor="let note of notes; let i = index">
-        <div [fontSize]="13">
-            {{note.note}}
-            <div><span [fontSize]="11" color="grey">{{note.date | date}}</span></div>
+        *ngFor="let note of notes; let i = index"
+        (mouseenter)="note.editingRow = true"
+        (mouseleave)="note.editingRow = false">
+        <div>
+            <mat-checkbox [checked]="note.checked" (change)="save(i, $event)"></mat-checkbox> 
+            <div style="display: block;margin-left: 24px;margin-bottom: 10px;margin-top: -27px;" 
+            [ngClass]="note.checked ? 'completed-task' : ''">
+                {{note.note}}
+            </div>
+            <div style="margin-top: -11px; padding-left: 24px;">
+                <span [fontSize]="11" color="grey" [ngClass]="note.checked ? 'completed-task' : ''">{{note.date | date}}</span>
+                <div style="margin-left: -4px; margin-top: -4px;">
+                    <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Remove</span>          
+                    <span (click)="openModal(i)" *ngIf="!note.checked" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Edit</span>
+                </div>
+            </div>
         </div>
-        <div style="position: absolute; right: 0px;" >
-            <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Remove</span>          
-            <span (click)="openModal(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Edit</span>
+        <div style="position: absolute; right: 0px;">
+
         </div>
     </li>
     <li 
@@ -29,4 +40,5 @@
 </ul>
 
 
+<!--  [(checked)]="note.checked" -->
 

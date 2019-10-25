@@ -1,11 +1,11 @@
-<div class="modal-header">
+<div class="modal-header" role="dialog">
   <h4 class="modal-title pull-left">{{title}} Category</h4>
   <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <input type="text" class="form-control" [formControl]="name" placeholder="Enter a category name" (keydown.enter)="name.errors ? '' : save()" required>
+  <input autofocus type="text" class="form-control" [formControl]="name" placeholder="Enter a category name" (keydown.enter)="name.errors ? '' : save()" required>
 </div>
 <div class="modal-footer d-flex justify-content-between">
   <button type="button" class="btn btn-danger" (click)="delete()" [disabled]="title == 'Add'">Delete</button>

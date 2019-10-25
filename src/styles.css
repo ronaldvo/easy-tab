@@ -8,11 +8,19 @@ body {
 }
 
 .basic-container {
-    margin-left: 220px;
+    margin-left: 250px;
   }
 
 .bold {
   font-weight: bold;
+}
+
+.edit-items .item {
+  visibility: hidden;
+}
+
+.edit-items:hover .item {
+  visibility: visible;
 }
 
 .container {

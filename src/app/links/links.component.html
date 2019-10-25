@@ -13,7 +13,7 @@
             </div>
                 <li 
                 [@fadeInOnEnter] [@fadeOutOnLeave]
-                class="list-group-item d-flex align-items-center"
+                class="list-group-item d-flex align-items-center edit-items"
                 *ngFor="let link of category.links; let ii = index"
                 (mouseenter)="link.editingRow = true"
                 (mouseleave)="link.editingRow = false">

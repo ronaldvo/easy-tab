@@ -10,7 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { DragulaModule } from 'ng2-dragula';
+
+// angular material
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // my components
 import { LinksComponent } from './links/links.component';
@@ -58,6 +61,7 @@ import { SearchComponent } from './search/search.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatCheckboxModule,
     ModalModule.forRoot(),
     TypeaheadModule.forRoot(),
     DragulaModule.forRoot()
