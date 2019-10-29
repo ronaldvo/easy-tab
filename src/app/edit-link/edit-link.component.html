@@ -5,8 +5,14 @@
     </button>
 </div>
 <div class="modal-body">
-    <!-- <input type="text" class="form-control" [formControl]="url" placeholder="Enter url" [typeahead]="history" typeaheadOptionField="url"> -->
-    <input autofocus type="text" class="form-control" [formControl]="url" placeholder="Enter url" required>
+    <input 
+        [formControl]="url"
+        [typeaheadAsync]="true"
+        [typeahead]="autoCompleteLinks$"
+        typeaheadOptionField="domain"
+        typeaheadWaitMs="275"
+        placeholder="ex: youtube"
+        class="form-control">
     <input type="text" class="form-control" [formControl]="name" placeholder="Enter a name" (keydown.enter)="(url.errors || name.errors) ? '' : save()" required>
 </div>
 <div class="modal-footer">

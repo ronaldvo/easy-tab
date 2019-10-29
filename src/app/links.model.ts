@@ -1,8 +1,7 @@
-import { Link } from './link.interface'
+import { Link } from './link.interface';
 
 export class Links {
   category: string;
   links: Array<Link>;
 }
-
 

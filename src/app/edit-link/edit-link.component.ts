@@ -4,7 +4,9 @@ import { ChromeStorageService } from '../chrome-storage.service';
 import { FormControl } from '@angular/forms';
 import { Link } from '../link.interface';
 import { Links } from '../links.model';
-import { ChromeHistoryService } from '../chrome-history.service';
+import { NameToDomainApiService } from '../name-to-domain-api.service';
+import { Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-link',
@@ -22,9 +24,14 @@ export class EditLinkComponent implements OnInit {
   index: number;
   index2: number;
   title: string;
-  history: [];
+  selected: string;
+  autoCompleteLinks$: Observable<Link[]>;
 
-  constructor(private chromeStorageService: ChromeStorageService, private chromeHistoryService: ChromeHistoryService, public bsModalRef: BsModalRef) { }
+  constructor(
+    private chromeStorageService: ChromeStorageService,
+    private nameToDomainService: NameToDomainApiService,
+    public bsModalRef: BsModalRef
+    ) { }
 
   ngOnInit() {
     this.chromeStorageService.linksObservable.subscribe(data => {
@@ -36,31 +43,28 @@ export class EditLinkComponent implements OnInit {
       this.url.setValue(this.links[this.index].links[this.index2].url);
     }
 
-    this.getHistory();
+    this.autoCompleteLinks$ = new Observable(obs => {
+      obs.next(this.url.value);
+    })
+    .pipe(
+      mergeMap((token: string) => this.nameToDomainService.get(token))
+    );
   }
 
-  save(){
+  save() {
     if (this.index2 >= 0) {
       this.newLink = {
         url: this.url.value,
         name: this.name.value
-      }
+      };
       this.chromeStorageService.updateLink(this.newLink, this.index, this.index2);
     } else {
       this.newLink = {
         url: this.url.value,
         name: this.name.value
-      }
+      };
       this.chromeStorageService.addLink(this.newLink, this.index);
     }
-
     this.bsModalRef.hide();
-  }
-
-  getHistory() {
-    this.chromeHistoryService.get().subscribe(data => {
-      this.history = data;
-      console.log(this.history);
-    })
   }
 }

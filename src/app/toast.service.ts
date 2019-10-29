@@ -13,6 +13,6 @@ export class ToastService {
       duration: 2500,
       verticalPosition: 'bottom',
       horizontalPosition: 'left'
-    })
+    });
   }
 }

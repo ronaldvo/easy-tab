@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 // other modules / libs
@@ -33,6 +33,9 @@ import { ColorDirective } from './directives/color.directive';
 import { CleanUrlPipe } from './clean-url.pipe';
 import { SideOptionsComponent } from './side-options/side-options.component';
 import { SearchComponent } from './search/search.component';
+import { ChromeTabsComponent } from './chrome-tabs/chrome-tabs.component';
+import { ShortenPipe } from './shorten.pipe';
+
 
 
 
@@ -53,11 +56,14 @@ import { SearchComponent } from './search/search.component';
     EditNoteComponent,
     RedditComponent,
     SideOptionsComponent,
-    SearchComponent
+    SearchComponent,
+    ChromeTabsComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,

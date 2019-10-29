@@ -24,9 +24,7 @@ export class LinksComponent implements OnInit, OnDestroy {
   modalRef: BsModalRef;
   subscription: Subscription;
 
-  constructor(
-    private chromeStorageService: ChromeStorageService,
-    private modalService: BsModalService) { }
+  constructor(private chromeStorageService: ChromeStorageService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.subscription = this.chromeStorageService.linksObservable.subscribe(data => {
@@ -45,19 +43,27 @@ export class LinksComponent implements OnInit, OnDestroy {
   }
 
   openCategoryModal(idx?) {
-    const initialState = {
-      index: idx,
-      title: idx >= 0 ? 'Edit' : 'Add'
+    const config = {
+      initialState: {
+        index: idx,
+        title: idx >= 0 ? 'Edit' : 'Add'
+      },
+      ignoreBackdropClick: true
     };
-    this.modalRef = this.modalService.show(EditCategoryComponent, {initialState});
+
+    this.modalRef = this.modalService.show(EditCategoryComponent, config);
   }
 
   openLinkModal(idx, idx2?) {
-    const initialState = {
-      index: idx,
-      index2: idx2,
-      title: idx2 >= 0 ? 'Edit' : 'Add'
+    const config = {
+      initialState: {
+        index: idx,
+        index2: idx2,
+        title: idx2 >= 0 ? 'Edit' : 'Add'
+      },
+      ignoreBackdropClick: true
     };
-    this.modalRef = this.modalService.show(EditLinkComponent, {initialState});
+
+    this.modalRef = this.modalService.show(EditLinkComponent, config);
   }
 }
