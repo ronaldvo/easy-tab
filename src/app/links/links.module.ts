@@ -6,9 +6,9 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { EditLinkComponent } from './edit-link/edit-link.component';
 import { FavIconComponent } from './fav-icon/fav-icon.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DirectivesModule } from '../directives/directives.module';
-import { PipesModule } from '../pipes/pipes.module';
-import { SharedModule } from '../shared-components/shared.module';
+import { DirectivesModule } from '../_directives/directives.module';
+import { PipesModule } from '../_pipes/pipes.module';
+import { SharedComponentsModule } from '../_shared-components/shared-components.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { SharedModule } from '../shared-components/shared.module';
     TypeaheadModule,
     DirectivesModule,
     PipesModule,
-    SharedModule
+    SharedComponentsModule
   ],
   exports: [
     LinksComponent

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChromeTabService } from './chrome-tab.service';
 import { ChromeTab } from './chrome-tab.model';
 import { Observable } from 'rxjs';
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-chrome-tabs',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./chrome-tabs.component.css']
 })
 export class ChromeTabsComponent implements OnInit {
-
+  hover: number;
   tabs: Observable<ChromeTab>;
   ObjectKeys = Object.keys;
 
@@ -18,14 +19,14 @@ export class ChromeTabsComponent implements OnInit {
   ngOnInit() {
     this.tabs = this.chromeTabService.chromeTabsObservable;
     this.chromeTabService.query();
-
-    console.log(this.tabs);
   }
 
   closeTab(id: number) {
-
-    console.log(id);
-
     this.chromeTabService.close(id);
+    return false;
+  }
+
+  setActive(id: number) {
+    this.chromeTabService.setActive(id);
   }
 }

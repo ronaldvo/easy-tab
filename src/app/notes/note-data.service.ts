@@ -25,7 +25,7 @@ export class NoteDataService {
   }
 
   add(note: Note) {
-    this.notes.push(note)
+    this.notes.unshift(note);
 
     this.set(this.notes);
     this.toast.show('Note added!');

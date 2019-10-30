@@ -9,26 +9,27 @@ import { HttpClientModule } from '@angular/common/http';
 // other modules / libs
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DragulaModule } from 'ng2-dragula';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
-// angular material
+// angular material / bootstrap
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 // my directives, pipes
-import { DirectivesModule } from './directives/directives.module';
-import { PipesModule } from './pipes/pipes.module';
+import { DirectivesModule } from './_directives/directives.module';
+import { PipesModule } from './_pipes/pipes.module';
 
 // my modules or components
 import { LinksModule } from './links/links.module';
 import { NotesModule } from './notes/notes.module';
 import { RedditModule } from './reddit/reddit.module';
 import { ChromeTabsModule } from './chrome-tabs/chrome-tabs.module';
-import { SharedModule } from './shared-components/shared.module';
-
+import { SharedComponentsModule } from './_shared-components/shared-components.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     // from libs or Angular
@@ -38,6 +39,7 @@ import { SharedModule } from './shared-components/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    TooltipModule.forRoot(),
     ModalModule.forRoot(),
     DragulaModule.forRoot(),
 
@@ -48,7 +50,8 @@ import { SharedModule } from './shared-components/shared.module';
     NotesModule,
     RedditModule,
     ChromeTabsModule,
-    SharedModule
+    SharedComponentsModule,
+    TypeaheadModule.forRoot()
   ],
   exports: [
   ],

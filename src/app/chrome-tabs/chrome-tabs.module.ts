@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChromeTabsComponent } from './chrome-tabs.component';
-import { DirectivesModule } from '../directives/directives.module';
-import { PipesModule } from '../pipes/pipes.module';
-import { SharedModule } from '../shared-components/shared.module';
+import { DirectivesModule } from '../_directives/directives.module';
+import { PipesModule } from '../_pipes/pipes.module';
+import { SharedComponentsModule } from '../_shared-components/shared-components.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     DirectivesModule,
     PipesModule,
-    SharedModule
+    SharedComponentsModule
   ],
   declarations: [
     ChromeTabsComponent

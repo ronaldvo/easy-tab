@@ -1,9 +1,9 @@
 <ul class="list-group list-group-flush" 
-    margin="bottom, 60" 
-    cursorPointer>
-    <div class="d-flex justify-content-between" margin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
-        <h4 margin="left, 3" cursorPointer>to do</h4>
-        <div style="padding: 2px 3px;" cursorPointer (click)="openModal()">Add Note</div>
+    appMargin="bottom, 60" 
+    appCursorPointer>
+    <div class="d-flex justify-content-between" appMargin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
+        <h4 appMargin="left, 3" appCursorPointer>to do</h4>
+        <div style="padding: 2px 3px;" appCursorPointer (click)="openModal()">Add Note</div>
     </div>
     <li 
         [@fadeInOnEnter] [@fadeOutOnLeave]
@@ -18,10 +18,10 @@
                 {{note.note}}
             </div>
             <div style="margin-top: -11px; padding-left: 24px;">
-                <span [fontSize]="11" color="grey" [ngClass]="note.checked ? 'completed-task' : ''">{{note.date | date}}</span>
+                <span [appFontSize]="11" color="grey" [ngClass]="note.checked ? 'completed-task' : ''">{{note.date | date}}</span>
                 <div style="margin-left: -4px; margin-top: -4px;">
-                    <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Remove</span>          
-                    <span (click)="openModal(i)" *ngIf="!note.checked" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Edit</span>
+                    <span (click)="delete(i)" class="badge align-self-end" style="font-weight: 200 !important" appCursorPointer>Remove</span>          
+                    <span (click)="openModal(i)" *ngIf="!note.checked" class="badge align-self-end" style="font-weight: 200 !important" appCursorPointer>Edit</span>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
         (click)="openModal()"
         *ngIf="notes.length === 0"
         style="border: 0px !important;"
-        color="lightgrey"
+        appColor="lightgrey"
         class="list-group-item d-flex justify-content-between align-items-center">
         no notes
     </li>

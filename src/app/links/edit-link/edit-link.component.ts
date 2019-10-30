@@ -20,16 +20,12 @@ export class EditLinkComponent implements OnInit {
   icon: string;
   links: Links[];
 
-  newLink: Link = {
-    url: this.url.value,
-    name: this.name.value
-  };
-
   index: number;
   index2: number;
   title: string;
   selected: string;
   autoCompleteLinks$: Observable<Link[]>;
+  newLink: Link;
 
   constructor(
     private chromeStorageService: ChromeStorageService,
@@ -55,13 +51,17 @@ export class EditLinkComponent implements OnInit {
     );
   }
 
-  update() {
-    this.chromeStorageService.updateLink(this.newLink, this.index, this.index2);
-    this.bsModalRef.hide();
-  }
-
   save() {
-    this.chromeStorageService.addLink(this.newLink, this.index);
+    this.newLink = {
+      url: this.url.value,
+      name: this.name.value
+    };
+
+    if (!!this.index2) {
+      this.chromeStorageService.updateLink(this.newLink, this.index, this.index2);
+    } else {
+      this.chromeStorageService.addLink(this.newLink, this.index);
+    }
     this.bsModalRef.hide();
   }
 }

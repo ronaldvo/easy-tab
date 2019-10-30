@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { TextLinkComponent } from './text-link/text-link.component';
 import { SearchComponent} from './search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DirectivesModule } from '../_directives/directives.module';
+import { PipesModule } from '../_pipes/pipes.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DirectivesModule,
+    PipesModule
   ],
   declarations: [
     TextLinkComponent,
@@ -19,4 +23,4 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchComponent
   ]
 })
-export class SharedModule { }
+export class SharedComponentsModule { }

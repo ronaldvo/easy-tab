@@ -20,14 +20,14 @@
         class="form-control" 
         [formControl]="name" 
         placeholder="Enter a name" 
-        (keydown.enter)="(url.errors || name.errors) ? '' : (title === 'Edit' ? update() : save())" 
+        (keydown.enter)="(url.errors || name.errors) ? '' : save()"
         required>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
         Close
     </button>
-    <button type="button" class="btn btn-primary" (click)="title === 'Edit' ? update() : save()" [disabled]="url.errors || name.errors">
+    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="url.errors || name.errors">
         {{title == 'Add' ? 'Add' : 'Edit'}}
     </button>
 </div>

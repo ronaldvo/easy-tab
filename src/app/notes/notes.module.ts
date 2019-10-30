@@ -4,8 +4,9 @@ import { NotesComponent } from './notes.component';
 import { EditNoteComponent } from './edit-note/edit-note.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DirectivesModule } from '../directives/directives.module';
-import { PipesModule } from '../pipes/pipes.module';
+import { DirectivesModule } from '../_directives/directives.module';
+import { PipesModule } from '../_pipes/pipes.module';
+import { SharedComponentsModule } from '../_shared-components/shared-components.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { PipesModule } from '../pipes/pipes.module';
     ReactiveFormsModule,
     MatCheckboxModule,
     DirectivesModule,
-    PipesModule
+    PipesModule,
+    SharedComponentsModule
   ],
   declarations: [
     NotesComponent,

@@ -1,17 +1,11 @@
 import { Directive, ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 
-/*
-  Pass in parameters in 2 ways:
-    [margin]="['bottom', 20]"
-    margin="bottom, 20"
-*/
-
 @Directive({
-  selector: '[color]'
+  selector: '[appColor]'
 })
 export class ColorDirective implements OnInit {
 
-  @Input() color: string;
+  @Input('appColor') color: string;
 
   constructor(private element: ElementRef, private renderer: Renderer2) { }
 

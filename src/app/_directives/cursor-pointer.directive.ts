@@ -7,7 +7,7 @@ import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
 */
 
 @Directive({
-  selector: '[cursorPointer]'
+  selector: '[appCursorPointer]'
 })
 export class CursorPointerDirective implements OnInit {
 

@@ -4,14 +4,19 @@ import { FontSizeDirective } from './font-size.directive';
 import { MarginDirective } from './margin-bottom.directive';
 import { CursorPointerDirective } from './cursor-pointer.directive';
 import { ColorDirective } from './color.directive';
-
+import { TopTooltipDirective } from './top-tooltip.directive';
+import { RightTooltipDirective } from './right-tooltip.directive';
+import { BottomTooltipDirective } from './bottom-tooltip.directive';
 
 @NgModule({
   declarations: [
     FontSizeDirective,
     MarginDirective,
     CursorPointerDirective,
-    ColorDirective
+    ColorDirective,
+    TopTooltipDirective,
+    RightTooltipDirective,
+    BottomTooltipDirective
   ],
   imports: [
     CommonModule
@@ -20,7 +25,10 @@ import { ColorDirective } from './color.directive';
     FontSizeDirective,
     MarginDirective,
     CursorPointerDirective,
-    ColorDirective
+    ColorDirective,
+    TopTooltipDirective,
+    RightTooltipDirective,
+    BottomTooltipDirective
   ]
 })
 export class DirectivesModule { }

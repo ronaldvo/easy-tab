@@ -1,16 +1,24 @@
-<div class="d-flex justify-content-between" style="border-bottom: 2px solid lightgrey" margin="bottom, -1">        
-    <h4 margin="left, 3">reddit</h4>
-    <div style="padding: 0px 3px;" cursorPointer>
-        reddit.com/r/ <input type="text" [formControl]="subreddit" placeholder="Enter url" (keydown.enter)="setSubreddit()"> 
-        <div style="padding: 2px 3px 2px 20px; display: inline-block" cursorPointer color="grey" (click)="setSubreddit()">Go</div>
+<div class="d-flex justify-content-between" style="border-bottom: 2px solid lightgrey" appMargin="bottom, -1">        
+    <h4 appMargin="left, 3">reddit</h4>
+    <div style="padding: 0px 3px;" appCursorPointer>
+        reddit.com/r/ 
+        <input 
+            #searchInput
+            type="text" 
+
+            style="    
+            width: 100px;
+            border-radius: 4px;
+            border: 0px;"> 
+        <div style="padding: 2px 3px 2px 20px; display: inline-block" appCursorPointer color="grey" (click)="setSubreddit()">Go</div>
     </div>
 </div>
-<table class="table" >
+<table class="table">
     <tbody>
         <tr *ngFor="let post of redditPosts | async" [@fadeInOnEnter] [@fadeOutOnLeave]>
             <td class="d-flex align-items-start">
                 <small>
-                    <span color="#00da00">{{post.ups | number}}</span>
+                    <span appColor="#00da00">{{post.ups | number}}</span>
                 </small>
             </td>
             <td>
@@ -19,7 +27,6 @@
         </tr>
     </tbody>
 </table>
-
 
 
 

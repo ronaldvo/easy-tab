@@ -5,8 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { EditLinkComponent } from './edit-link/edit-link.component';
 import { Subscription } from 'rxjs';
-import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation, fadeInUpOnEnterAnimation } from 'angular-animations';
-
+import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 
 @Component({
@@ -16,7 +15,6 @@ import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation, fadeInUpOnEnterAnimati
   animations: [
     fadeInOnEnterAnimation(),
     fadeOutOnLeaveAnimation({ duration: 300}),
-    fadeInUpOnEnterAnimation()
   ]
 })
 export class LinksComponent implements OnInit, OnDestroy {
@@ -30,7 +28,6 @@ export class LinksComponent implements OnInit, OnDestroy {
     this.subscription = this.chromeStorageService.linksObservable.subscribe(data => {
       this.links = data;
     });
-
     this.chromeStorageService.get();
   }
 
@@ -42,7 +39,7 @@ export class LinksComponent implements OnInit, OnDestroy {
     this.chromeStorageService.deleteLink(idx, idx2);
   }
 
-  openCategoryModal(idx?) {
+  openCategoryModal(idx?: number) {
     const config = {
       initialState: {
         index: idx,
@@ -50,11 +47,10 @@ export class LinksComponent implements OnInit, OnDestroy {
       },
       ignoreBackdropClick: true
     };
-
     this.modalRef = this.modalService.show(EditCategoryComponent, config);
   }
 
-  openLinkModal(idx, idx2?) {
+  openLinkModal(idx: number, idx2?: number) {
     const config = {
       initialState: {
         index: idx,
@@ -63,7 +59,6 @@ export class LinksComponent implements OnInit, OnDestroy {
       },
       ignoreBackdropClick: true
     };
-
     this.modalRef = this.modalService.show(EditLinkComponent, config);
   }
 }

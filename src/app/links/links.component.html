@@ -1,15 +1,15 @@
 
 <button class="btn btn-primary" (click)="openCategoryModal()" style="position: fixed; top: 40px; left: 40px;">Add Link Category</button>
 
-<div class="row" >
+<div class="row">
   <div class="col-lg-4" *ngFor="let category of links; let i = index" [@fadeInOnEnter] [@fadeOutOnLeave]>
       <ul class="list-group list-group-flush" 
           style="min-height: 200px;"
-          margin="bottom, 60" 
-          cursorPointer>
-            <div class="d-flex justify-content-between" margin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
-              <h4 margin="left, 3" cursorPointer (click)="openCategoryModal(i)">{{category.category}}</h4>
-              <div style="padding: 2px 3px;" cursorPointer color="grey" (click)="openLinkModal(i);">Add Link</div>
+          appMargin="bottom, 60"
+          appCursorPointer>
+            <div class="d-flex justify-content-between" appMargin="bottom, 15" style="border-bottom: 2px solid lightgrey">        
+              <h4 appMargin="left, 3" appCursorPointer (click)="openCategoryModal(i)">{{category.category}}</h4>
+              <div style="padding: 2px 3px;" appCursorPointer appColor="grey" (click)="openLinkModal(i);">Add Link</div>
             </div>
                 <li 
                 [@fadeInOnEnter] [@fadeOutOnLeave]
@@ -20,23 +20,23 @@
                   <fav-icon [url]="link.url"></fav-icon>
                   <app-text-link [url]="link.url" [name]="link.name"></app-text-link>
                   <div style="position: absolute; right: 0px;" *ngIf="link.editingRow">
-                      <span (click)="deleteLink(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Remove</span>          
-                      <span (click)="openLinkModal(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Edit</span>
+                      <span (click)="deleteLink(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" appCursorPointer>Remove</span>          
+                      <span (click)="openLinkModal(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" appCursorPointer>Edit</span>
                   </div>
               </li>
               <li 
-              [@fadeInUpOnEnter] [@fadeOutOnLeave]
+                [@fadeInOnEnter] [@fadeOutOnLeave]
                 (click)="openLinkModal(i)"
                 *ngIf="category.links.length === 0"
                 style="border: 0px !important;"
-                color="lightgrey"
+                appColor="lightgrey"
                 class="list-group-item d-flex justify-content-between align-items-center">
                 no links in this category
               </li>
       </ul>
     </div>
 </div>
-<div class="col-lg-12" margin="bottom, 90" *ngIf="links.length === 0">
+<div class="col-lg-12" appMargin="bottom, 90" *ngIf="links.length === 0">
   <span color="lightgrey">no link categories added, add a link category</span>
 </div>
 

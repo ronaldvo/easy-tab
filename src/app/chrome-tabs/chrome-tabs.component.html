@@ -1,20 +1,24 @@
 <div class="side-options">
-    <small color="grey">
+    <small appColor="grey">
         * Click on category names to edit
     </small>
-    <div margin="top, 30">
+    <div appMargin="top, 30" appTopTooltip="Left click to go to tab <br />Right click to close tab">
         <h4>open tabs</h4>
-        <div [fontSize]="13" color="#b9b9b9" style="line-height: 25px">
-            <div *ngFor="let tab of tabs | async | keyvalue">
-                
+        <div 
+            *ngFor="let tab of tabs | async | keyvalue; let i = index" 
+            [appFontSize]="14" 
+            appColor="#b9b9b9" 
+            style="line-height: 25px">
+            <div 
+                (contextmenu)="closeTab(tab.value.id)">
                 <img src="{{
                     (!!tab.value.favIconUrl && !tab.value.favIconUrl.includes('chrome-extension://')) 
                     ? tab.value.favIconUrl : 'https://www.google.com/images/icons/product/chrome-32.png'}}" 
-                    style="max-width: 17px; padding-right: 5px;">
-                    {{tab.value.title | shorten: 35}}
-                <div cursorPointer style="position:absolute; display: inline-block; right: -36px" (click)="closeTab(tab.value.id)">Close</div>
-            </div> 
-        </div>
+                    style="max-width: 25px; padding-right: 10px;">
+                <span appCursorPointer (click)="setActive(tab.value.id)">{{tab.value.title | shorten: 35}}</span>
+            </div>
+
+        </div> 
     </div>
 </div>
     

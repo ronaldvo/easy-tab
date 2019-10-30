@@ -7,11 +7,11 @@ import { Directive, ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 */
 
 @Directive({
-  selector: '[margin]'
+  selector: '[appMargin]'
 })
 export class MarginDirective implements OnInit {
 
-  @Input() margin: [string, number] | string;
+  @Input('appMargin') margin: [string, number] | string;
 
   constructor(private element: ElementRef, private renderer: Renderer2) { }
 

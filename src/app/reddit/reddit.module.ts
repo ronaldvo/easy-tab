@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RedditComponent } from './reddit.component';
-import { SharedModule } from '../shared-components/shared.module';
+import { SharedComponentsModule } from '../_shared-components/shared-components.module';
+import { DirectivesModule } from '../_directives/directives.module';
+import { PipesModule } from '../_pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -10,8 +12,10 @@ import { SharedModule } from '../shared-components/shared.module';
   ],
   imports: [
     CommonModule,
+    DirectivesModule,
+    PipesModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedComponentsModule
   ],
   exports: [
     RedditComponent

@@ -4,6 +4,7 @@ import { ToastService } from '../toast.service';
 import { ChromeTab } from './chrome-tab.model';
 import { map } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,7 @@ export class ChromeTabService {
   public chromeTabsObservable = this.chromeTabsBehaviorSubject.asObservable();
 
   constructor(private ngZone: NgZone, private toast: ToastService) {
-    this.listenToRemoveOrUpdate();
+    this.listeners();
   }
 
   query() {
@@ -21,7 +22,9 @@ export class ChromeTabService {
       let cb = (result) => {
         ob.next(result);
       };
-      window['chrome'].tabs.query({}, cb);
+      window['chrome'].tabs.query({
+        currentWindow: true
+      }, cb);
     })
     .pipe(
       map((data: any) => {
@@ -46,12 +49,25 @@ export class ChromeTabService {
     window['chrome'].tabs.remove(id, () => {});
   }
 
-  listenToRemoveOrUpdate() {
+  setActive(id: number): void {
+    window['chrome'].tabs.update(id, { active: true }, () => {});
+  }
+
+  listeners() {
     window['chrome'].tabs.onRemoved.addListener(() => {
+      this.toast.show('Tab closed');
       this.query();
     });
 
     window['chrome'].tabs.onUpdated.addListener(() => {
+      this.query();
+    });
+
+    window['chrome'].tabs.onDetached.addListener(() => {
+      this.query();
+    });
+
+    window['chrome'].tabs.onAttached.addListener(() => {
       this.query();
     });
   }
