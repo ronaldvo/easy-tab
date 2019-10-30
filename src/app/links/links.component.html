@@ -19,7 +19,6 @@
                 (mouseleave)="link.editingRow = false">
                   <fav-icon [url]="link.url"></fav-icon>
                   <app-text-link [url]="link.url" [name]="link.name"></app-text-link>
-                  
                   <div style="position: absolute; right: 0px;" *ngIf="link.editingRow">
                       <span (click)="deleteLink(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Remove</span>          
                       <span (click)="openLinkModal(i, ii)" class="badge align-self-end" style="font-weight: 200 !important" cursorPointer>Edit</span>

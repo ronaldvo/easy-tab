@@ -11,7 +11,7 @@ export class TextLinkComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.url = (this.url.indexOf('://') === -1) ? 'http://' + this.url : this.url;
   }
 

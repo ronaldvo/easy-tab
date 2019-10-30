@@ -1,4 +1,4 @@
-import { Directive,ElementRef, Input, Renderer2, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 
 /*
   Pass in parameters in 2 ways:
@@ -9,15 +9,14 @@ import { Directive,ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 @Directive({
   selector: '[color]'
 })
-export class ColorDirective {
+export class ColorDirective implements OnInit {
 
-  @Input('color') color: string;
+  @Input() color: string;
 
   constructor(private element: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.renderer.setStyle(this.element.nativeElement, 'color', this.color)
+    this.renderer.setStyle(this.element.nativeElement, 'color', this.color);
   }
- 
 }
- 
+

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { NoteDataService } from '../note-data.service'; 
+import { NoteDataService } from '../note-data.service';
 import { FormControl } from '@angular/forms';
 import { Note } from '../note.model';
 

@@ -8,74 +8,49 @@ import { HttpClientModule } from '@angular/common/http';
 
 // other modules / libs
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { DragulaModule } from 'ng2-dragula';
 
 // angular material
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
-// my components
-import { LinksComponent } from './links/links.component';
-import { FavIconComponent } from './fav-icon/fav-icon.component';
-import { TextLinkComponent } from './text-link/text-link.component';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
-import { EditLinkComponent } from './edit-link/edit-link.component';
-import { RedditComponent } from './reddit/reddit.component';
-import { NotesComponent } from './notes/notes.component';
-import { EditNoteComponent } from './edit-note/edit-note.component';
+// my directives, pipes
+import { DirectivesModule } from './directives/directives.module';
+import { PipesModule } from './pipes/pipes.module';
 
-// my directives, pipe
-import { FontSizeDirective } from './directives/font-size.directive';
-import { MarginDirective } from './directives/margin-bottom.directive';
-import { CursorPointerDirective } from './directives/cursor-pointer.directive';
-import { ColorDirective } from './directives/color.directive';
-import { CleanUrlPipe } from './clean-url.pipe';
-import { SideOptionsComponent } from './side-options/side-options.component';
-import { SearchComponent } from './search/search.component';
-import { ChromeTabsComponent } from './chrome-tabs/chrome-tabs.component';
-import { ShortenPipe } from './shorten.pipe';
-
+// my modules or components
+import { LinksModule } from './links/links.module';
+import { NotesModule } from './notes/notes.module';
+import { RedditModule } from './reddit/reddit.module';
+import { ChromeTabsModule } from './chrome-tabs/chrome-tabs.module';
+import { SharedModule } from './shared-components/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LinksComponent,
-    FontSizeDirective,
-    TextLinkComponent,
-    MarginDirective,
-    EditCategoryComponent,
-    EditLinkComponent,
-    CursorPointerDirective,
-    ColorDirective,
-    FavIconComponent,
-    CleanUrlPipe,
-    NotesComponent,
-    EditNoteComponent,
-    RedditComponent,
-    SideOptionsComponent,
-    SearchComponent,
-    ChromeTabsComponent,
-    ShortenPipe
+    AppComponent
   ],
   imports: [
+    // from libs or Angular
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatCheckboxModule,
     ModalModule.forRoot(),
-    TypeaheadModule.forRoot(),
-    DragulaModule.forRoot()
+    DragulaModule.forRoot(),
+
+    // my stuff
+    DirectivesModule,
+    PipesModule,
+    LinksModule,
+    NotesModule,
+    RedditModule,
+    ChromeTabsModule,
+    SharedModule
   ],
-  entryComponents: [
-    EditCategoryComponent,
-    EditLinkComponent,
-    EditNoteComponent
+  exports: [
   ],
   providers: [],
   bootstrap: [AppComponent]

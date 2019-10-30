@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { NoteDataService } from '../note-data.service';
-import { Note } from '../note.model';
-import { EditNoteComponent } from '../edit-note/edit-note.component';
+import { NoteDataService } from './note-data.service';
+import { Note } from './note.model';
+import { EditNoteComponent } from './edit-note/edit-note.component';
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -25,7 +25,6 @@ export class NotesComponent implements OnInit {
   constructor(private noteDataService: NoteDataService, private modalService: BsModalService, private formBuilder: FormBuilder) {
     this.editingRow = null;
 
-
     this.notesFormGroup = this.formBuilder.group({
       notesFormArray: this.formBuilder.array([])
     });
@@ -33,10 +32,8 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.notes = [];
-
     this.noteDataService.get().subscribe(data => {
       this.notes = data;
-
     });
   }
 
@@ -48,15 +45,13 @@ export class NotesComponent implements OnInit {
     const initialState = {
       index: idx,
       title: idx >= 0 ? 'Edit' : 'Add'
-    }
+    };
     this.modalRef = this.modalService.show(EditNoteComponent, {initialState});
   }
 
   save(index, e) {
     this.notes[index].checked = e.checked;
-
     this.noteDataService.update(this.notes[index], index);
-
   }
 
 }

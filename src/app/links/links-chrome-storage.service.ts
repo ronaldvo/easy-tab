@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Links } from './links.model';
 import { Link } from './link.interface';
 import { BehaviorSubject } from 'rxjs';
-import { ToastService } from './toast.service';
+import { ToastService } from '../toast.service';
 
 @Injectable({
   providedIn: 'root'

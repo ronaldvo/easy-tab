@@ -12,7 +12,7 @@ export class FavIconComponent implements OnInit {
   src: string;
   error: boolean
 
-  constructor() { 
+  constructor() {
     this.error = false;
   }
 
@@ -21,7 +21,7 @@ export class FavIconComponent implements OnInit {
   }
 
   useAlternative() {
-    this.src = 'https://www.google.com/s2/favicons?domain=' + this.url
+    this.src = 'https://www.google.com/s2/favicons?domain=' + this.url;
   }
 
 }

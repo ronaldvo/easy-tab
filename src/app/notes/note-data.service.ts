@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Note } from './note.model';
-import { ToastService } from './toast.service';
+import { ToastService } from '../toast.service';
 
 @Injectable({
   providedIn: 'root'

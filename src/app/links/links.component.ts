@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { ChromeStorageService } from '../chrome-storage.service';
-import { Links } from '../links.model';
+import { ChromeStorageService } from './links-chrome-storage.service';
+import { Links } from './links.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { EditCategoryComponent } from '../edit-category/edit-category.component';
-import { EditLinkComponent } from '../edit-link/edit-link.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { EditLinkComponent } from './edit-link/edit-link.component';
 import { Subscription } from 'rxjs';
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation, fadeInUpOnEnterAnimation } from 'angular-animations';
 

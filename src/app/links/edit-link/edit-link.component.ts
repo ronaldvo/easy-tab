@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { ChromeStorageService } from '../chrome-storage.service';
+import { ChromeStorageService } from '../links-chrome-storage.service';
 import { FormControl } from '@angular/forms';
 import { Link } from '../link.interface';
 import { Links } from '../links.model';
-import { NameToDomainApiService } from '../name-to-domain-api.service';
+import { NameToDomainApiService } from '../../name-to-domain-api.service';
 import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
@@ -20,7 +20,11 @@ export class EditLinkComponent implements OnInit {
   icon: string;
   links: Links[];
 
-  newLink: Link;
+  newLink: Link = {
+    url: this.url.value,
+    name: this.name.value
+  };
+
   index: number;
   index2: number;
   title: string;
@@ -51,20 +55,13 @@ export class EditLinkComponent implements OnInit {
     );
   }
 
+  update() {
+    this.chromeStorageService.updateLink(this.newLink, this.index, this.index2);
+    this.bsModalRef.hide();
+  }
+
   save() {
-    if (this.index2 >= 0) {
-      this.newLink = {
-        url: this.url.value,
-        name: this.name.value
-      };
-      this.chromeStorageService.updateLink(this.newLink, this.index, this.index2);
-    } else {
-      this.newLink = {
-        url: this.url.value,
-        name: this.name.value
-      };
-      this.chromeStorageService.addLink(this.newLink, this.index);
-    }
+    this.chromeStorageService.addLink(this.newLink, this.index);
     this.bsModalRef.hide();
   }
 }

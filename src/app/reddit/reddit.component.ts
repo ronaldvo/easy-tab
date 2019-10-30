@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RedditPost } from '../reddit-post.model';
-import { RedditJsonService } from '../reddit-json.service';
+import { RedditPost } from './reddit-post.model';
+import { RedditJsonService } from './reddit-json.service';
 import { FormControl } from '@angular/forms';
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 

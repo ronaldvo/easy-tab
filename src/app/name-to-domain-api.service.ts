@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Link } from './link.interface';
+import { Link } from './links/link.interface';
 import { map } from 'rxjs/operators';
 
 const API_URL = 'https://autocomplete.clearbit.com/v1/companies/suggest?query=';

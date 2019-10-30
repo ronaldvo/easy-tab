@@ -1,4 +1,4 @@
-import { Directive,ElementRef, Input, Renderer2, OnInit } from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
 
 /*
   Pass in parameters in 2 ways:
@@ -9,13 +9,11 @@ import { Directive,ElementRef, Input, Renderer2, OnInit } from '@angular/core';
 @Directive({
   selector: '[cursorPointer]'
 })
-export class CursorPointerDirective {
+export class CursorPointerDirective implements OnInit {
 
   constructor(private element: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
-      this.renderer.setStyle(this.element.nativeElement, 'cursor', 'pointer')
+      this.renderer.setStyle(this.element.nativeElement, 'cursor', 'pointer');
   }
- 
 }
- 

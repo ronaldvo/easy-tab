@@ -1,4 +1,4 @@
-import { Link } from './links/link.interface';
+import { Link } from './link.interface';
 
 export class Links {
   category: string;

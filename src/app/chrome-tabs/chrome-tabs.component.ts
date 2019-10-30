@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChromeTabService } from '../chrome-tab.service';
-import { ChromeTab } from '../chrome-tab.model';
+import { ChromeTabService } from './chrome-tab.service';
+import { ChromeTab } from './chrome-tab.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class ChromeTabsComponent implements OnInit {
 
-  tabs: Observable<ChromeTab[]>;
+  tabs: Observable<ChromeTab>;
+  ObjectKeys = Object.keys;
 
   constructor(private chromeTabService: ChromeTabService) { }
 
@@ -22,6 +23,9 @@ export class ChromeTabsComponent implements OnInit {
   }
 
   closeTab(id: number) {
-    this.chromeTabService.close(id).subscribe();
+
+    console.log(id);
+
+    this.chromeTabService.close(id);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { ChromeStorageService } from '../chrome-storage.service'; 
+import { ChromeStorageService } from '../links-chrome-storage.service';
 import { FormControl } from '@angular/forms';
 import { Links } from '../links.model';
 
