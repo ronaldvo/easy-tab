@@ -10,6 +10,7 @@ import { ToastService } from '../toast.service';
 })
 export class ChromeStorageService {
 
+  private googleStorageSync = window['chrome'].storage.sync;
   private linksBehaviorSubject: BehaviorSubject<Links[]> = new BehaviorSubject<Links[]>([]);
   public linksObservable = this.linksBehaviorSubject.asObservable();
 
@@ -20,7 +21,7 @@ export class ChromeStorageService {
         const cb = (result) => {
           ob.next(result.links);
         };
-        window['chrome'].storage.sync.get(['links'], cb);
+        this.googleStorageSync.get(['links'], cb);
     }).subscribe(data => {
       this.ngZone.run(() => {
         this.linksBehaviorSubject.next(data || []);
@@ -33,7 +34,7 @@ export class ChromeStorageService {
       const cb = () => {
         obs.next(null);
       };
-      window['chrome'].storage.sync.set({ 'links': links }, cb);
+      this.googleStorageSync.set({ 'links': links }, cb);
     });
   }
 
@@ -49,7 +50,7 @@ export class ChromeStorageService {
       links: []
     };
 
-    const list = Object.assign([], this.linksBehaviorSubject.value);
+    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
     list.push(newCategory);
 
     this.set(list).subscribe(() => {
@@ -60,7 +61,8 @@ export class ChromeStorageService {
   }
 
   updateCategory(category: string, idx: number) {
-    const list = Object.assign([], this.linksBehaviorSubject.value);
+    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
+
     list[idx].category = category;
 
     this.set(list).subscribe(() => {
@@ -70,7 +72,8 @@ export class ChromeStorageService {
   }
 
   deleteCategory(idx: number) {
-    const list = Object.assign([], this.linksBehaviorSubject.value);
+    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
+
     list.splice(idx, 1);
 
     this.set(list).subscribe(() => {
@@ -80,7 +83,8 @@ export class ChromeStorageService {
   }
 
   addLink(newLink: Link, idx: number) {
-    const list = Object.assign([], this.linksBehaviorSubject.value);
+    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
+
     list[idx].links = [...list[idx].links, newLink];
 
     this.set(list).subscribe(() => {
@@ -90,7 +94,7 @@ export class ChromeStorageService {
   }
 
   updateLink(newLink: Link, idx: number, idx2: number) {
-    const list = Object.assign([], this.linksBehaviorSubject.value);
+    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
     list[idx].links[idx2] = newLink;
 
     this.set(list).subscribe(() => {
@@ -100,7 +104,7 @@ export class ChromeStorageService {
   }
 
   deleteLink(idx: number, idx2: number) {
-    const list = Object.assign([], this.linksBehaviorSubject.value);
+    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
     list[idx].links.splice(idx2, 1);
 
     this.set(list).subscribe(() => {
@@ -108,6 +112,5 @@ export class ChromeStorageService {
     });
     this.toast.show('Link deleted!');
   }
-
 }
 

@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { DragulaModule } from 'ng2-dragula';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import * as _ from 'lodash';
 
 // angular material / bootstrap
 import { MatSnackBarModule } from '@angular/material/snack-bar';

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ChromeTabService } from './chrome-tab.service';
 import { ChromeTab } from './chrome-tab.model';
-import { Observable } from 'rxjs';
+import { Observable, bindCallback } from 'rxjs';
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
@@ -14,7 +14,8 @@ export class ChromeTabsComponent implements OnInit {
   tabs: Observable<ChromeTab>;
   ObjectKeys = Object.keys;
 
-  constructor(private chromeTabService: ChromeTabService) { }
+
+  constructor(private chromeTabService: ChromeTabService, private ngZone: NgZone) { }
 
   ngOnInit() {
     this.tabs = this.chromeTabService.chromeTabsObservable;

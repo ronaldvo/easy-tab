@@ -7,6 +7,24 @@
         <app-notes class="col-lg-4"></app-notes>
     </div>
     <!-- https://chrome.google.com/webstore/detail/easy-tab/cleofkbnoioekakjbogdnacnnlngpoeb -->
+
+
+    <!-- Questions:
+
+    How do I use rxjs bindCallback for chrome.storage.sync.get(string, callback(res))?
+
+    rxjs documentation:
+    import { bindCallback } from 'rxjs';
+    import * as jQuery from 'jquery';
+
+    // Suppose we have jQuery.getJSON('/my/url', callback)
+    const getJSONAsObservable = bindCallback(jQuery.getJSON);
+    const result = getJSONAsObservable('/my/url'); <--- ERROR HERE SAYING EXPECTED 0 ARGUMENTS, GOT 1
+    result.subscribe(x => console.log(x), e => console.error(e)); 
+
+    I get the same error! cannot compile typescript code
+
+    -->
 </div>
 
 

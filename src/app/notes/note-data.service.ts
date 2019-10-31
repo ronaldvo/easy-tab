@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Note } from './note.model';
 import { ToastService } from '../toast.service';
+import { ChromeStorageService } from '../links/links-chrome-storage.service';
+import { ChromeTabService } from '../chrome-tabs/chrome-tab.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class NoteDataService {
     });
   }
 
-  set(notes: Note[]) {
+  private set(notes: Note[]) {
     localStorage.setItem('notes', JSON.stringify(notes));
   }
 

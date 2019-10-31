@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ChromeTabService {
 
+  private chromeTabs = window['chrome'].tabs;
   private chromeTabsBehaviorSubject: BehaviorSubject<ChromeTab> = new BehaviorSubject<ChromeTab>({});
   public chromeTabsObservable = this.chromeTabsBehaviorSubject.asObservable();
 
@@ -22,7 +23,7 @@ export class ChromeTabService {
       let cb = (result) => {
         ob.next(result);
       };
-      window['chrome'].tabs.query({
+      this.chromeTabs.query({
         currentWindow: true
       }, cb);
     })
@@ -45,29 +46,32 @@ export class ChromeTabService {
   }
 
   close(id: number): void {
-    delete this.chromeTabsBehaviorSubject.value[id];
-    window['chrome'].tabs.remove(id, () => {});
+    const tabs = JSON.parse(JSON.stringify(this.chromeTabsBehaviorSubject.value));
+
+    delete tabs[id];
+    this.chromeTabsBehaviorSubject.next(tabs);
+    this.chromeTabs.remove(id, () => {});
   }
 
   setActive(id: number): void {
-    window['chrome'].tabs.update(id, { active: true }, () => {});
+    this.chromeTabs.update(id, { active: true }, () => {});
   }
 
   listeners() {
-    window['chrome'].tabs.onRemoved.addListener(() => {
+    this.chromeTabs.onRemoved.addListener(() => {
       this.toast.show('Tab closed');
       this.query();
     });
 
-    window['chrome'].tabs.onUpdated.addListener(() => {
+    this.chromeTabs.onUpdated.addListener(() => {
       this.query();
     });
 
-    window['chrome'].tabs.onDetached.addListener(() => {
+    this.chromeTabs.onDetached.addListener(() => {
       this.query();
     });
 
-    window['chrome'].tabs.onAttached.addListener(() => {
+    this.chromeTabs.onAttached.addListener(() => {
       this.query();
     });
   }
