@@ -57,7 +57,7 @@ export class EditLinkComponent implements OnInit {
       name: this.name.value
     };
 
-    if (!!this.index2) {
+    if (!!this.index2 && this.index2 >= 0) {
       this.chromeStorageService.updateLink(this.newLink, this.index, this.index2);
     } else {
       this.chromeStorageService.addLink(this.newLink, this.index);

@@ -4,6 +4,7 @@ import { Links } from './links.model';
 import { Link } from './link.interface';
 import { BehaviorSubject } from 'rxjs';
 import { ToastService } from '../toast.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,8 @@ export class ChromeStorageService {
       links: []
     };
 
-    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
+    // const list = _.cloneDeep(this.linksBehaviorSubject.value);
+    const list = Object.assign([], this.linksBehaviorSubject.value);
     list.push(newCategory);
 
     this.set(list).subscribe(() => {
@@ -61,8 +63,8 @@ export class ChromeStorageService {
   }
 
   updateCategory(category: string, idx: number) {
-    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
-
+    // const list = _.cloneDeep(this.linksBehaviorSubject.value);
+    const list = Object.assign([], this.linksBehaviorSubject.value);
     list[idx].category = category;
 
     this.set(list).subscribe(() => {
@@ -72,8 +74,8 @@ export class ChromeStorageService {
   }
 
   deleteCategory(idx: number) {
-    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
-
+    // const list = _.cloneDeep(this.linksBehaviorSubject.value);
+    const list = Object.assign([], this.linksBehaviorSubject.value);
     list.splice(idx, 1);
 
     this.set(list).subscribe(() => {
@@ -83,8 +85,8 @@ export class ChromeStorageService {
   }
 
   addLink(newLink: Link, idx: number) {
-    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
-
+    // const list = _.cloneDeep(this.linksBehaviorSubject.value);
+    const list = Object.assign([], this.linksBehaviorSubject.value);
     list[idx].links = [...list[idx].links, newLink];
 
     this.set(list).subscribe(() => {
@@ -94,7 +96,8 @@ export class ChromeStorageService {
   }
 
   updateLink(newLink: Link, idx: number, idx2: number) {
-    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
+    // const list = _.cloneDeep(this.linksBehaviorSubject.value);
+    const list = Object.assign([], this.linksBehaviorSubject.value);
     list[idx].links[idx2] = newLink;
 
     this.set(list).subscribe(() => {
@@ -104,7 +107,8 @@ export class ChromeStorageService {
   }
 
   deleteLink(idx: number, idx2: number) {
-    const list = JSON.parse(JSON.stringify(this.linksBehaviorSubject.value));
+    // const list = _.cloneDeep(this.linksBehaviorSubject.value);
+    const list = Object.assign([], this.linksBehaviorSubject.value);
     list[idx].links.splice(idx2, 1);
 
     this.set(list).subscribe(() => {

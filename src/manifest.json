@@ -1,7 +1,7 @@
 {
     "name": "easy tab",
     "description": "",
-    "version": "1.61",
+    "version": "1.67",
     "incognito": "split",
     "chrome_url_overrides": {
     "newtab": "index.html"
