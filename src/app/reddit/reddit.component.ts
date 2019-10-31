@@ -24,7 +24,7 @@ const delayedUniqueSearch = (delay: number) => (src$: Observable<Event>) => (src
 })
 export class RedditComponent implements OnInit {
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef<HTMLInputElement>;
-  subreddit = new FormControl('eyebleach');
+  subreddit = new FormControl('all');
   redditPosts: Observable<RedditPost[]>;
 
   constructor(private redditJsonService: RedditJsonService) { }
@@ -38,11 +38,11 @@ export class RedditComponent implements OnInit {
 
     this.redditJsonService.getSubreddit();
 
-    fromEvent(this.searchInput.nativeElement, 'input').pipe(
-      delayedUniqueSearch(275),
-      tap(x => console.log(x)),
-      switchMap(query => this.redditJsonService.setSubreddit(query))
-    );
+    // fromEvent(this.searchInput.nativeElement, 'input').pipe(
+    //   delayedUniqueSearch(275),
+    //   tap(x => console.log(x)),
+    //   switchMap(query => this.redditJsonService.setSubreddit(query))
+    // );
   }
 
   setSubreddit() {

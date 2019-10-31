@@ -3,9 +3,9 @@
     <div style="padding: 0px 3px;" appCursorPointer>
         reddit.com/r/ 
         <input 
-            #searchInput
             type="text" 
-
+            [formControl]="subreddit"
+            (keydown.enter)="setSubreddit()"
             style="    
             width: 100px;
             border-radius: 4px;
