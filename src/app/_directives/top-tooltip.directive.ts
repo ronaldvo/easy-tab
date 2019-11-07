@@ -11,7 +11,8 @@ export class TopTooltipDirective implements OnInit {
   constructor(private element: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.renderer.setAttribute(this.element.nativeElement, 'tooltip', this.tooltip);
-    this.renderer.setAttribute(this.element.nativeElement, 'placement', 'top');
+    this.renderer.setAttribute(this.element.nativeElement, 'matTooltip', this.tooltip);
+    this.renderer.setAttribute(this.element.nativeElement, 'matTooltipPosition', 'above');
+    console.log(this.element.nativeElement);
   }
 }

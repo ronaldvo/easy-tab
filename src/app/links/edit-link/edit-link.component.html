@@ -7,6 +7,7 @@
 <div class="modal-body">
     <!-- url -->
     <input 
+        appForceFocus
         [formControl]="url"
         [typeaheadAsync]="true"
         [typeahead]="autoCompleteLinks$"

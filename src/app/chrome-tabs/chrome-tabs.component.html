@@ -2,12 +2,12 @@
     <small appColor="grey">
         * Click on category names to edit
     </small>
-    <div appMargin="top, 30" appTopTooltip="Left click to go to tab <br />Right click to close tab">
+    <div appMargin="top, 45" matTooltip="Left click to navigate to tab. Right click to close tab." matTooltipPosition="above">
         <h4>open tabs</h4>
-        <div 
-            *ngFor="let tab of tabs | async | keyvalue; let i = index" 
-            [appFontSize]="14" 
-            appColor="#b9b9b9" 
+        <div
+            *ngFor="let tab of tabs | async | keyvalue; let i = index"
+            [appFontSize]="14"
+            appColor="#b9b9b9"
             style="line-height: 25px">
             <div 
                 (contextmenu)="closeTab(tab.value.id)">
@@ -17,7 +17,6 @@
                     style="max-width: 25px; padding-right: 10px;">
                 <span appCursorPointer (click)="setActive(tab.value.id)">{{tab.value.title | shorten: 35}}</span>
             </div>
-
         </div> 
     </div>
 </div>

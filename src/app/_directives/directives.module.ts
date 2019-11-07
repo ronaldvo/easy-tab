@@ -7,6 +7,9 @@ import { ColorDirective } from './color.directive';
 import { TopTooltipDirective } from './top-tooltip.directive';
 import { RightTooltipDirective } from './right-tooltip.directive';
 import { BottomTooltipDirective } from './bottom-tooltip.directive';
+import { ForceFocusDirective } from './force-focus.directive';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -16,10 +19,12 @@ import { BottomTooltipDirective } from './bottom-tooltip.directive';
     ColorDirective,
     TopTooltipDirective,
     RightTooltipDirective,
-    BottomTooltipDirective
+    BottomTooltipDirective,
+    ForceFocusDirective
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatTooltipModule
   ],
   exports: [
     FontSizeDirective,
@@ -28,7 +33,9 @@ import { BottomTooltipDirective } from './bottom-tooltip.directive';
     ColorDirective,
     TopTooltipDirective,
     RightTooltipDirective,
-    BottomTooltipDirective
+    BottomTooltipDirective,
+    ForceFocusDirective,
+    MatTooltipModule
   ]
 })
 export class DirectivesModule { }

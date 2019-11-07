@@ -1,3 +1,3 @@
-<a (click)="go()" style="margin-right: 10px;" appColor="#3af" appCursorPointer>
+<a href="javascript: void(0)" (click)="go()" (mouseup)="$event.button === 1 ? go() : ''" style="margin-right: 10px;" appColor="#3af" appCursorPointer>
     {{name}}
 </a>

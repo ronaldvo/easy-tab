@@ -30,7 +30,7 @@ import { SharedComponentsModule } from './_shared-components/shared-components.m
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     // from libs or Angular
